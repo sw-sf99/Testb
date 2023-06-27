@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Person(uname) {
+        this.uname = uname;
+      }
+      Person.prototype.say = function () {
+        console.log('说话');
+      };
+
+      // 子构造函数 复用 父亲 属性 uname， 行为 say
+      function SuperPerson(uname) {
+        // 复用父亲的属性 uname
+        Person.call(this, uname); // 儿子 借用了父亲的构造函数 来给自己  uname 赋值
+      }
+
+      SuperPerson.prototype.say = Person.prototype.say;
+
+      const s1 = new SuperPerson('悟空');
+      s1.say();
+      // console.log(s1);
+    </script>
+  </body>
+</html>
